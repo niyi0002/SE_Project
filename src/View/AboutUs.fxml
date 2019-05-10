@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane opacity="0.8" prefHeight="455.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AboutUs">
+    <children>
+        <Button fx:id="goBack" layoutX="508.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="45.0" prefWidth="101.0" text="Go Back">
+            <font>
+                <Font name="Times New Roman" size="16.0" />
+            </font>
+        </Button>
+        <Text fx:id="text" fontSmoothingType="LCD" layoutX="59.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When natural disasters strike, the aftermath of the disaster leaves a lot of people in challenging circumstances and they are suddenly found in a dire need of help. There are a lot of people willing to help others in times of natural catastrophes, but often times the help from organizations can be lacking. For that reason we have decided to create a volunteering JavaFX application where admins upload information about how and where to volunteer to help at times of crisis. Users can then register on the application to help others in need. The purpose of our application is to gather people who are committed to helping others. With this application we have an organized platform that simplifies the gathering process. The times of crisis can be earthquakes, floodings, forest fires, etc. Users can firstly join the platform and fill out information about themselves. Once they have signed up, they can sign in and register for volunteering events, see their schedules, donate money or clothes. Admins of this application has the right to create an event, change/cancel schedule, delete users completely that aren’t fit for the organization. With the application, we wish to create a hospitable environment for volunteers." wrappingWidth="521.947265625">
+            <font>
+                <Font name="Times New Roman Italic" size="16.0" />
+            </font>
+        </Text>
+        <Label fx:id="aboutUs" layoutX="59.0" layoutY="25.0" text="About Us...">
+            <font>
+                <Font name="Times New Roman Bold Italic" size="22.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
