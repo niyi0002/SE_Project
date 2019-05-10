@@ -54,5 +54,81 @@ public class Profile implements Initializable {
     @FXML
     private Label emailLabel;
 
+    @FXML
+    private Button goBack;
 
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private Label username;
+
+    @FXML
+    private Label birthday;
+
+    @FXML
+    private Label usernameL;
+
+    @FXML
+    private Label firstNameL;
+
+    @FXML
+    private Label lastNameL;
+
+    @FXML
+    private Label addressL;
+
+    @FXML
+    private Label birthdayL;
+
+    ChangeScene cs = new ChangeScene();
+    DatabaseConnection databaseConnection = new DatabaseConnection();
+    String user = VolunteerLogin.getCurrentUser();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            Image image = new Image(new FileInputStream("src/icons/download.jpg"));
+            imageView.setImage(image);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            firstNameL.setText(databaseConnection.getFirstName(user));
+
+            lastNameL.setText(databaseConnection.getLastName(user));
+
+            emailL.setText(databaseConnection.getEmail(user));
+
+            addressL.setText(databaseConnection.getAddress(user));
+
+            phoneNbrL.setText(databaseConnection.getPhoneNbr(user));
+
+            usernameL.setText(databaseConnection.getUsername(user));
+
+            birthdayL.setText(databaseConnection.getBirthday(user));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void handleEditProfile(ActionEvent event) throws IOException {
+        cs.sceneHandler("../View/EditProfile.fxml",event);
+    }
+
+    @FXML
+    void handleGoBack(ActionEvent event) throws IOException {
+        cs.sceneHandler("../View/VolunteerMenu.fxml",event);
+    }
+
+    @FXML
+    void handleViewHistory(ActionEvent event) throws IOException {
+
+        cs.sceneHandler("../View/ViewHistory.fxml",event);
+    }
 }
