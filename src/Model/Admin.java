@@ -2,6 +2,7 @@ package Model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
+import src.Model.User;
 
 public class Admin extends User {
 

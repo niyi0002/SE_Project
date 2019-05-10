@@ -24,4 +24,35 @@ import java.util.ResourceBundle;
 
 public class Profile implements Initializable {
 
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private Label emailL;
+
+    @FXML
+    private Label phoneNbrL;
+
+    @FXML
+    private Button editProfile;
+
+    @FXML
+    private Button history;
+
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label lastnameLabel;
+
+    @FXML
+    private Label addressLabel;
+
+    @FXML
+    private Label phoneNumberLabel;
+
+    @FXML
+    private Label emailLabel;
+
+
 }

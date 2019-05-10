@@ -3,6 +3,7 @@ package Model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import src.Model.User;
 
 import java.sql.Date;
 
