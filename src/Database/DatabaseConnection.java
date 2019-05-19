@@ -436,6 +436,21 @@ public class DatabaseConnection {
             System.out.println(e.getMessage());
         }
     }
+    public void deleteVolunteer(String username) {
+        String sql = "DELETE FROM volunteers WHERE userName = ?";
+
+        try (Connection conn = this.dbConnect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, username);
+            // execute the delete statement
+            pstmt.executeUpdate();
+            System.out.println("User deleted");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 
 
