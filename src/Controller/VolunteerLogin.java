@@ -64,7 +64,7 @@ public class VolunteerLogin {
         volunteer.setPassword(password1);
         String roles = "volunteer";
 
-        String sql = "SELECT * FROM information WHERE username = ? and password = ? and role = ? ";
+        String sql = "SELECT * FROM volunteers WHERE userName = ? and password = ? and role = ? ";
 
         try {
             preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
