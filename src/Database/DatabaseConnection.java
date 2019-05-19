@@ -417,4 +417,21 @@ public class DatabaseConnection {
 
         return eventList;
     }
+    public void insertDonation(Donation donation ,Volunteer volunteer)  {
+
+        String query = ""+"INSERT INTO donation(donationAmount,donationHistory,idinformation) VALUES(?,?,?) ";
+
+        try (Connection conn = this.dbConnect();
+             PreparedStatement preparedStmt = conn.prepareStatement(query)) {
+
+            preparedStmt.setString   (1, donation.getDonation());
+            preparedStmt.setString   (2, donation.getDonationDate());
+            preparedStmt.setString   (3, volunteer.getIdinformation());
+
+            preparedStmt.executeUpdate();
+            System.out.println("Inserted donation!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
