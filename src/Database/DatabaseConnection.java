@@ -444,7 +444,7 @@ public class DatabaseConnection {
 
         LocalDate date = LocalDate.now();
         ObservableList<History> eventHistory = FXCollections.observableArrayList();
-        String query = "select eventID , history from volunteers_has_events where volunteers = '" + userID + "' and history < '" + date + "'";
+        String query = "select eventID , history from volunteer_has_events where securityNbr = '" + userID + "' and history < '" + date + "'";
 
         try (Connection connection = this.dbConnect();
              Statement statement = connection.createStatement()) {
@@ -539,7 +539,7 @@ public class DatabaseConnection {
 
     public void insertDonation(Donation donation, Volunteer volunteer) {
 
-        String query = "" + "INSERT INTO donation(donationAmount,donationHistory,idinformation) VALUES(?,?,?) ";
+        String query = "" + "INSERT INTO donation(donationAmount,donationHistory,securityNbr) VALUES(?,?,?) ";
 
         try (Connection conn = this.dbConnect();
              PreparedStatement preparedStmt = conn.prepareStatement(query)) {

@@ -43,7 +43,7 @@ public class Donate {
         Donation donation = new Donation();
         Volunteer volunteer = new Volunteer();
         DatabaseConnection db = new DatabaseConnection();
-        String user = VolunteerLogin.getCurrentUser();
+        String user = DefaultPage.getCurrentUser();
         String volunteerID = db.getId(user);
         volunteer.setIdinformation(volunteerID);
 

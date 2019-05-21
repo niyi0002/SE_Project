@@ -145,7 +145,7 @@ public class Events implements Initializable {
         Volunteer volunteer = new Volunteer();
         Event  event1 = new Event();
         int eventid = Integer.parseInt(enterID.getText());
-        String user = VolunteerLogin.getCurrentUser();
+        String user = DefaultPage.getCurrentUser();
         String personID = db.getId(user);
         volunteer.setIdinformation(personID);
         event1.setEventID(eventid);
