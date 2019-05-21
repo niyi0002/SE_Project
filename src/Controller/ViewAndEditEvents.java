@@ -1,8 +1,6 @@
 package Controller;
 
-import Database.DatabaseConnection;
 import Model.Event;
-import Model.Volunteer;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -11,15 +9,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import sample.ChangeScene;
+import Database.DatabaseConnection;
+import javafx.scene.control.Tooltip;
+
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
-public class Events implements Initializable {
+public class ViewAndEditEvents implements Initializable {
 
     @FXML
     private TableView<Event> table;
@@ -31,7 +32,7 @@ public class Events implements Initializable {
     private TableColumn<Event, String> eventName;
 
     @FXML
-    private TableColumn<Event, Date> date;
+    private TableColumn<Event, String> date;
 
     @FXML
     private TableColumn<Event, String> time;
@@ -58,21 +59,32 @@ public class Events implements Initializable {
     private ComboBox<String> comboBox;
 
     @FXML
-    private Button register;
+    private Button goBack;
 
     @FXML
-    private Button goBack;
+    private Button helpButton;
 
     DatabaseConnection db = new DatabaseConnection();
     ChangeScene cs = new ChangeScene();
     private ObservableList<Event> eventObservableList = db.eventInformation();
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("To edit events, click on the field you wish to change.");
+        helpButton.setTooltip(tooltip);
+
+
+
+
+
+
+
         comboBox.getItems().add("Ascending order");
         comboBox.getItems().add("Descending order");
+        eventId.setVisible(false);
 
         this.eventId.setCellValueFactory(new PropertyValueFactory("eventID"));
         this.eventName.setCellValueFactory(new PropertyValueFactory("eventName"));
@@ -82,17 +94,10 @@ public class Events implements Initializable {
         this.organizer.setCellValueFactory(new PropertyValueFactory("eventOrganizer"));
         this.country.setCellValueFactory(new PropertyValueFactory("country"));
         this.city.setCellValueFactory(new PropertyValueFactory("city"));
+        editEvent();
 
-        eventId.setStyle("-fx-background-color: rgba(231, 151, 231, .5);");
-        date.setStyle("-fx-background-color: rgba(231, 151, 231, .5);");
-        info.setStyle("-fx-background-color: rgba(231, 151, 231, .5);");
-        country.setStyle("-fx-background-color: rgba(231, 151, 231, .5);");
-        eventName.setStyle("-fx-background-color: rgba(255, 231, 179, .5);");
-        time.setStyle("-fx-background-color: rgba(255, 231, 179, .5);");
-        organizer.setStyle("-fx-background-color: rgba(255, 231, 179, .5);");
-        city.setStyle("-fx-background-color: rgba(255, 231, 179, .5);");
         this.table.setItems(eventObservableList);
-
+        this.table.setEditable(true);
         FilteredList<Event> filteredData = new FilteredList<>(eventObservableList, p -> true);
         search.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(event -> {
@@ -121,15 +126,14 @@ public class Events implements Initializable {
 
         comboBox.setOnAction((e) -> {
             String choice = comboBox.getSelectionModel().getSelectedItem();
-            if (choice == "Ascending order"){
+            if (choice == "Ascending order") {
                 eventName.setSortType(TableColumn.SortType.ASCENDING);
                 eventId.setSortType(TableColumn.SortType.ASCENDING);
 
                 table.setItems(sortedData);
                 table.getSortOrder().add(eventName);
 
-            }
-            else if (choice == "Descending order"){
+            } else if (choice == "Descending order") {
                 eventName.setSortType(TableColumn.SortType.DESCENDING);
                 eventId.setSortType(TableColumn.SortType.DESCENDING);
 
@@ -137,28 +141,68 @@ public class Events implements Initializable {
                 table.getSortOrder().add(eventName);
             }
         });
-    }
-
-
-    @FXML
-    private void handleRegister(ActionEvent event) throws SQLException {
-        Volunteer volunteer = new Volunteer();
-        Event  event1 = new Event();
-        int eventid = Integer.parseInt(enterID.getText());
-        String user = DefaultPage.getCurrentUser();
-        String personID = db.getId(user);
-        volunteer.setIdinformation(personID);
-        event1.setEventID(eventid);
-        event1.setEventDate(java.sql.Date.valueOf(db.getEventDate(eventid)));
-        db.registerToAnEvent(personID,eventid,event1,volunteer);
 
     }
+
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
 
-        cs.sceneHandler("../View/VolunteerMenu.fxml",event);
+        cs.sceneHandler("../View/AdminMenu.fxml",event);
+
+    }
+
+    public void editEvent(){
+        eventName.setCellFactory(TextFieldTableCell.forTableColumn());
+        eventName.setOnEditCommit(event -> {
+            Event event2 = event.getRowValue();
+            event2.setEventName(event.getNewValue());
+            db.updateEventName(event.getNewValue(),event.getRowValue().getEventID());
+        });
+
+        // date.setCellFactory(TextFieldTableCell.forTableColumn());
+        date.setCellFactory(TextFieldTableCell.forTableColumn());
+        date.setOnEditCommit(event -> {
+            Event event2 = event.getRowValue();
+            event2.setEventDate(Date.valueOf(event.getNewValue()));
+            db.updateEventDate(Date.valueOf(event.getNewValue()), event.getRowValue().getEventID());
+        });
+
+        time.setCellFactory(TextFieldTableCell.forTableColumn());
+        time.setOnEditCommit(event -> {
+            Event event2 = event.getRowValue();
+            event2.setEventTime(event.getNewValue());
+            db.updateEventTime(event.getNewValue(),event.getRowValue().getEventID());
+        });
+        info.setCellFactory(TextFieldTableCell.forTableColumn());
+        info.setOnEditCommit(event -> {
+            Event event2 = event.getRowValue();
+            event2.setEventInfo(event.getNewValue());
+            db.updateEventInfo(event.getNewValue(),event.getRowValue().getEventID());
+        });
+        organizer.setCellFactory(TextFieldTableCell.forTableColumn());
+        organizer.setOnEditCommit(event -> {
+            Event event2 = event.getRowValue();
+            event2.setEventOrganizer(event.getNewValue());
+            db.updateEventOrganizer(event.getNewValue(),event.getRowValue().getEventID());
+        });
+        country.setCellFactory(TextFieldTableCell.forTableColumn());
+        country.setOnEditCommit(event -> {
+            Event event2 = event.getRowValue();
+            event2.setCountry(event.getNewValue());
+            db.updateCountry(event.getNewValue(),event.getRowValue().getEventID());
+        });
+        city.setCellFactory(TextFieldTableCell.forTableColumn());
+        city.setOnEditCommit(event -> {
+            Event event2 = event.getRowValue();
+            event2.setCity(event.getNewValue());
+            db.updateCity(event.getNewValue(),event.getRowValue().getEventID());
+        });
 
     }
 
 
+    @FXML
+    private void handleHelpButton(ActionEvent event) throws IOException {
+
+    }
 }

@@ -56,7 +56,7 @@ public class EditProfile implements Initializable {
 
         DatabaseConnection db = new DatabaseConnection();
         Volunteer volunteer = new Volunteer();
-        String user =  Controller.VolunteerLogin.getCurrentUser();
+        String user =  Controller.DefaultPage.getCurrentUser();
         System.out.println(user);
 
         if (!emailF.getText().equals("")) {
@@ -86,7 +86,7 @@ public class EditProfile implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         DatabaseConnection db = new DatabaseConnection();
-        String user =  Controller.VolunteerLogin.getCurrentUser();
+        String user =  Controller.DefaultPage.getCurrentUser();
 
         try {
             Image image = new Image(new FileInputStream("src/icons/download.jpg"));

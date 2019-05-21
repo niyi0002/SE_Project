@@ -83,7 +83,7 @@ public class Profile implements Initializable {
 
     ChangeScene cs = new ChangeScene();
     DatabaseConnection databaseConnection = new DatabaseConnection();
-    String user = VolunteerLogin.getCurrentUser();
+    String user = DefaultPage.getCurrentUser();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

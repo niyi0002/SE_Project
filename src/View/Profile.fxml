@@ -44,3 +44,22 @@
             <font>
                 <Font name="Times New Roman Italic" size="16.0" />
             </font>
+        </Button>
+        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="username" layoutX="271.0" layoutY="30.0" prefHeight="17.0" prefWidth="112.0" text="Username :">
+            <font>
+                <Font name="Times New Roman" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="birthday" layoutX="273.0" layoutY="276.0" text="Birthday :">
+            <font>
+                <Font name="Times New Roman" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="usernameL" layoutX="393.0" layoutY="31.0" prefHeight="17.0" prefWidth="135.0" />
+        <Label fx:id="firstNameL" layoutX="393.0" layoutY="69.0" prefHeight="17.0" prefWidth="135.0" />
+        <Label fx:id="lastNameL" layoutX="393.0" layoutY="109.0" prefHeight="17.0" prefWidth="135.0" />
+        <Label fx:id="addressL" layoutX="393.0" layoutY="148.0" prefHeight="17.0" prefWidth="135.0" />
+        <Label fx:id="birthdayL" layoutX="393.0" layoutY="277.0" prefHeight="17.0" prefWidth="135.0" />
+    </children>
+</AnchorPane>
