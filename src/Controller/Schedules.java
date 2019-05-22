@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.ChangeScene;
-import sample.DatabaseConnection;
+import Database.DatabaseConnection;
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,7 +52,7 @@ public class Schedules implements Initializable{
         } catch (SQLException e){
             e.printStackTrace();
         }
-        ObservableList<User_Has_Events> eventObservableList = db.historyInformation(personID);
+        ObservableList<User_Has_Events> eventObservableList = db.historyInfo(personID);
 
         this.eventColumn.setCellValueFactory(new PropertyValueFactory("eventName"));
         this.dateColumn.setCellValueFactory(new PropertyValueFactory("history"));

@@ -1,9 +1,6 @@
 package Database;
 
-import Model.Donation;
-import Model.Event;
-import Model.History;
-import Model.Volunteer;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -440,7 +437,7 @@ public class DatabaseConnection {
     }
 
 
-    public ObservableList<History> historyInfo(String userID) {
+    public ObservableList<User_Has_Events> historyInfo(String userID) {
 
         LocalDate date = LocalDate.now();
         ObservableList<History> eventHistory = FXCollections.observableArrayList();
@@ -569,6 +566,23 @@ public class DatabaseConnection {
             System.out.println(e.getMessage());
         }
     }
+
+    public String getSecurityNbr(String username) throws SQLException {
+        String SSN = null;
+
+        String query = "select securityNbr from volunteers where username = '" + username + "'";
+        try (Connection connection = this.dbConnect();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                SSN = resultSet.getString(1);
+            }
+        }
+        return SSN;
+    }
+
+
+
 }
 
 
