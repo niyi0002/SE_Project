@@ -68,7 +68,7 @@ public class Schedules implements Initializable{
     @FXML
     private void handleReturnButton (ActionEvent event) throws IOException {
 
-        cs.sceneHandler("../View/UserMenu.fxml",event);
+        cs.sceneHandler("../View/VolunteerMenu.fxml",event);
 
     }
 
