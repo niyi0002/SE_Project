@@ -52,7 +52,7 @@ public class Schedules implements Initializable{
         } catch (SQLException e){
             e.printStackTrace();
         }
-        ObservableList<User_Has_Events> eventObservableList = db.historyInfo(personID);
+        ObservableList<User_Has_Events> eventObservableList = db.historyInformation(personID);
 
         this.eventColumn.setCellValueFactory(new PropertyValueFactory("eventName"));
         this.dateColumn.setCellValueFactory(new PropertyValueFactory("history"));

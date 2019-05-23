@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.8" prefHeight="453.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUp">
+<?import java.net.URL?>
+<AnchorPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.8"  prefHeight="703.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUp">
     <children>
         <Label fx:id="addressLabel" layoutX="344.0" layoutY="142.0" prefHeight="17.0" prefWidth="64.0" text="Address :">
             <font>
@@ -75,5 +76,8 @@
         </Label>
         <DatePicker fx:id="birthday" layoutX="423.0" layoutY="24.0" />
     </children>
+    <stylesheets>
+        <URL value="@design.css" />
+    </stylesheets>
 </AnchorPane>
 

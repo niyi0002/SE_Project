@@ -89,7 +89,7 @@ public class EditProfile implements Initializable {
         String user =  Controller.DefaultPage.getCurrentUser();
 
         try {
-            Image image = new Image(new FileInputStream("src/icons/download.jpg"));
+            Image image = new Image(new FileInputStream("src/icons/users-17.png"));
             imageView.setImage(image);
 
         } catch (FileNotFoundException e) {

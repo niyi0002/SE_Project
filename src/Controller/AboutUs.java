@@ -18,7 +18,7 @@ public class AboutUs {
     private Text text;
 
     @FXML
-    private Label aboutUs;
+    private Label about;
 
     Stage dialogStage = new Stage();
     Scene scene;

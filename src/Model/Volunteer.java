@@ -31,7 +31,7 @@ public class Volunteer extends User {
 
     @Override
     public String toString() {
-        return  " Volunteer ID "+getIdinformation()+ " Volunteer's name : " +getFirstname()+ " Volunteer's Lastname : "+getLastname()+ " username: " +getUsername()+ " email: " +getEmail()+ " birthday: " +getBirthday()+
-                " address: " +getAddress()+ " phone number: " +getPhoneNbr();
+        return  " ID : "+getIdinformation()+ "\n Firstname : " +getFirstname()+ "\n Lastname : "+getLastname()+ "\n Username : " +getUsername()+ "\n Email : " +getEmail()+ "\n Birthday : " +getBirthday()+
+                "\n Address : " +getAddress()+ "\n Phone Number : " +getPhoneNbr();
     }
 }

@@ -89,7 +89,7 @@ public class Profile implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            Image image = new Image(new FileInputStream("src/icons/download.jpg"));
+            Image image = new Image(new FileInputStream("src/icons/users-17.png"));
             imageView.setImage(image);
 
         } catch (FileNotFoundException e) {

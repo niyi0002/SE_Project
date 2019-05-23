@@ -322,7 +322,7 @@ public class DatabaseConnection {
 
     public void updateEventName(String newEventName , int eventId)  {
 
-        String sql = "update event set eventName = ?  where eventID = ?  ";
+        String sql = "update events set eventName = ?  where eventID = ?  ";
         Event event = new Event();
         try (Connection con = this.dbConnect();
              PreparedStatement preparedStmt = con.prepareStatement(sql)) {
@@ -338,7 +338,7 @@ public class DatabaseConnection {
     }
     public void updateEventDate(Date newDate , int eventId)  {
 
-        String sql = "update event set eventDate = ?  where eventID = ?  ";
+        String sql = "update events set eventDate = ?  where eventID = ?  ";
         Event event = new Event();
         try (Connection con = this.dbConnect();
              PreparedStatement preparedStmt = con.prepareStatement(sql)) {
@@ -354,7 +354,7 @@ public class DatabaseConnection {
     }
     public void updateEventTime(String newTime , int eventId)  {
 
-        String sql = "update event set eventTime = ?  where eventID = ?  ";
+        String sql = "update events set eventTime = ?  where eventID = ?  ";
         Event event = new Event();
         try (Connection con = this.dbConnect();
              PreparedStatement preparedStmt = con.prepareStatement(sql)) {
@@ -370,7 +370,7 @@ public class DatabaseConnection {
     }
     public void updateEventInfo(String newInfo , int eventId)  {
 
-        String sql = "update event set eventInfo = ?  where eventID = ?  ";
+        String sql = "update events set eventInfo = ?  where eventID = ?  ";
         Event event = new Event();
         try (Connection con = this.dbConnect();
              PreparedStatement preparedStmt = con.prepareStatement(sql)) {
@@ -386,7 +386,7 @@ public class DatabaseConnection {
     }
     public void updateEventOrganizer(String newOrganizer , int eventId)  {
 
-        String sql = "update event set eventOrganizer = ?  where eventID = ?  ";
+        String sql = "update events set eventOrganizer = ?  where eventID = ?  ";
         Event event = new Event();
         try (Connection con = this.dbConnect();
              PreparedStatement preparedStmt = con.prepareStatement(sql)) {
@@ -405,7 +405,7 @@ public class DatabaseConnection {
 
     public void updateCountry(String newCountry , int eventId)  {
 
-        String sql = "update event set country = ?  where eventID = ?  ";
+        String sql = "update events set country = ?  where eventID = ?  ";
         Event event = new Event();
         try (Connection con = this.dbConnect();
              PreparedStatement preparedStmt = con.prepareStatement(sql)) {
@@ -421,7 +421,7 @@ public class DatabaseConnection {
     }
     public void updateCity(String newCity , int eventId)  {
 
-        String sql = "update event set city = ?  where eventID = ?  ";
+        String sql = "update events set city = ?  where eventID = ?  ";
         Event event = new Event();
         try (Connection con = this.dbConnect();
              PreparedStatement preparedStmt = con.prepareStatement(sql)) {
@@ -437,7 +437,7 @@ public class DatabaseConnection {
     }
 
 
-    public ObservableList<User_Has_Events> historyInfo(String userID) {
+    public ObservableList<History> historyInfo(String userID) {
 
         LocalDate date = LocalDate.now();
         ObservableList<History> eventHistory = FXCollections.observableArrayList();
@@ -508,8 +508,9 @@ public class DatabaseConnection {
     }
 
     public ObservableList<Volunteer> volunteerInfo() {
+        String roles = "volunteer";
         ObservableList<Volunteer> eventList = FXCollections.observableArrayList();
-        String query = "select firstName,lastName,securityNbr,userName,role,email,birthday,address,phoneNbr from volunteers  ";
+        String query = "select firstName,lastName,securityNbr,userName,role,email,birthday,address,phoneNbr from volunteers where role = '"+roles+"'";
         try (Connection connection = this.dbConnect();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
@@ -566,7 +567,35 @@ public class DatabaseConnection {
             System.out.println(e.getMessage());
         }
     }
+    public ObservableList<User_Has_Events> historyInformation(String UserID) {
+        LocalDate date = LocalDate.now();
+        ObservableList<User_Has_Events> historyList = FXCollections.observableArrayList();
+        String query = "select * from volunteer_has_events where securityNbr = '"+UserID+"' and history >= '"+date+"'";
 
+        try (Connection connection = this.dbConnect();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                User_Has_Events userHasEvents = new User_Has_Events();
+                userHasEvents.setEventID(resultSet.getInt(1));
+                userHasEvents.setIdinformation(resultSet.getString(2));
+                userHasEvents.setHistory(resultSet.getDate(3));
+                userHasEvents.setEventTime(resultSet.getString(4));
+                userHasEvents.setEventName(resultSet.getString(5));
+                userHasEvents.setCountry(resultSet.getString(6));
+                userHasEvents.setCity(resultSet.getString(7));
+                historyList.add(userHasEvents);
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return historyList;
+
+
+    }
     public String getSecurityNbr(String username) throws SQLException {
         String SSN = null;
 
@@ -580,9 +609,6 @@ public class DatabaseConnection {
         }
         return SSN;
     }
-
-
-
 }
 
 

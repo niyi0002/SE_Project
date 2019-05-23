@@ -17,7 +17,7 @@ public class VolunteerMenu {
     private Label displayMessagae;
 
     @FXML
-    private Button goBack;
+    private Button signout;
 
     @FXML
     private Button event;
@@ -69,7 +69,7 @@ public class VolunteerMenu {
         Node node = (Node) event.getSource();
         dialogStage = (Stage) node.getScene().getWindow();
         dialogStage.close();
-        scene = new Scene(FXMLLoader.load(getClass().getResource("../View/Schedule.fxml")));
+        scene = new Scene(FXMLLoader.load(getClass().getResource("../View/Schedules.fxml")));
         dialogStage.setScene(scene);
         dialogStage.show();
     }

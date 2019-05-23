@@ -2,20 +2,24 @@ package Controller;
 import Model.Volunteer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import sample.ChangeScene;
 import Database.DatabaseConnection;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
 
-public class DefaultPage {
+public class DefaultPage implements Initializable {
 
     @FXML
     private Button signinButton;
@@ -31,6 +35,10 @@ public class DefaultPage {
     private TextField handleUsername;
     @FXML
     private TextField handlePassword;
+    @FXML
+    private Label username;
+    @FXML
+    private Label pass1;
 
     ChangeScene cs= new ChangeScene();
     private static String currentUser;
@@ -115,6 +123,28 @@ public class DefaultPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            Image image = new Image(new FileInputStream("src/icons/user-icon-png-8.jpg"));
+            ImageView imageView = new ImageView(image);
+            username.setGraphic(imageView);
+            imageView.setFitHeight(35);
+            imageView.setFitWidth(35);
+
+            Image image1 = new Image(new FileInputStream("src/icons/hey.png"));
+            ImageView imageView1 = new ImageView(image1);
+            pass1.setGraphic(imageView1);
+            imageView1.setFitHeight(35);
+            imageView1.setFitWidth(35);
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
