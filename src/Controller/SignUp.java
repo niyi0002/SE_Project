@@ -31,6 +31,10 @@ public class SignUp {
     @FXML
     private Label birthdayText ;
     @FXML
+    private Label skill;
+    @FXML
+    private TextField skill1;
+    @FXML
     private TextField firstName ;
     @FXML
     private TextField lastName ;
@@ -73,6 +77,7 @@ public class SignUp {
         volunteer.setEmail(email.getText());
         volunteer.setAddress(address.getText());
         volunteer.setPhoneNbr(phoneNbr.getText());
+        volunteer.setSkill(skill1.getText());
         volunteer.setBirthday(gettedDatePickerDate);
         volunteer.setRole("volunteer");
         db.signUpVolunteer(volunteer);

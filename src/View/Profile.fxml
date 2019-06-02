@@ -7,16 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="pane" fx:id="anchorPane" prefHeight="703.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Profile">
+<AnchorPane id="pane" fx:id="anchorPane" prefHeight="703.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Profile">
     <children>
-        <Label fx:id="emailL" layoutX="511.0" layoutY="227.0" prefHeight="23.0" prefWidth="163.0" />
-        <Label fx:id="phoneNbrL" layoutX="497.0" layoutY="192.0" prefHeight="23.0" prefWidth="163.0" />
-        <Button fx:id="editProfile" layoutX="33.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="26.0" prefWidth="99.0" text="Edit Profile">
-            <font>
-                <Font name="Times New Roman Italic" size="14.0" />
-            </font>
-        </Button>
-        <Button fx:id="history" layoutX="33.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleViewHistory" prefHeight="26.0" prefWidth="99.0" text="View History">
+        <Label fx:id="emailL" layoutX="497.0" layoutY="250.0" prefHeight="23.0" prefWidth="163.0" />
+        <Label fx:id="phoneNbrL" layoutX="497.0" layoutY="204.0" prefHeight="23.0" prefWidth="163.0" />
+        <Button fx:id="editProfile" layoutX="33.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="26.0" prefWidth="99.0" text="Edit Profile">
             <font>
                 <Font name="Times New Roman Italic" size="14.0" />
             </font>
@@ -29,15 +24,15 @@
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font></Label>
-        <Label fx:id="addressLabel" layoutX="393.0" layoutY="157.0" prefHeight="23.0" prefWidth="83.0" text="Address :">
+        <Label fx:id="addressLabel" layoutX="408.0" layoutY="160.0" prefHeight="23.0" prefWidth="83.0" text="Address :">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font></Label>
-        <Label fx:id="phoneNumberLabel" layoutX="364.0" layoutY="189.0" prefHeight="23.0" prefWidth="127.0" text="Phone Number :">
+        <Label fx:id="phoneNumberLabel" layoutX="364.0" layoutY="204.0" prefHeight="23.0" prefWidth="127.0" text="Phone Number :">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font></Label>
-        <Label fx:id="emailLabel" layoutX="403.0" layoutY="226.0" prefHeight="9.0" prefWidth="83.0" text="E-mail :">
+        <Label fx:id="emailLabel" layoutX="408.0" layoutY="252.0" prefHeight="9.0" prefWidth="83.0" text="  E-mail :">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font></Label>
@@ -52,7 +47,7 @@
                 <Font name="Times New Roman" size="16.0" />
             </font>
         </Label>
-        <Label fx:id="birthday" layoutX="386.0" layoutY="268.0" text="Birthday :">
+        <Label fx:id="birthday" layoutX="397.0" layoutY="299.0" text="  Birthday :">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font>
@@ -61,7 +56,7 @@
         <Label fx:id="firstNameL" layoutX="515.0" layoutY="70.0" prefHeight="23.0" prefWidth="163.0" />
         <Label fx:id="lastNameL" layoutX="515.0" layoutY="118.0" prefHeight="23.0" prefWidth="163.0" />
         <Label fx:id="addressL" layoutX="515.0" layoutY="160.0" prefHeight="23.0" prefWidth="163.0" />
-        <Label fx:id="birthdayL" layoutX="497.0" layoutY="266.0" prefHeight="23.0" prefWidth="163.0" />
+        <Label fx:id="birthdayL" layoutX="497.0" layoutY="297.0" prefHeight="23.0" prefWidth="163.0" />
     </children>
     <stylesheets>
         <URL value="@design.css" />

@@ -28,7 +28,7 @@ public class DatabaseConnection {
     }
 
     public void signUpVolunteer(Volunteer volunteer) {
-        String sql = "" + "INSERT INTO volunteers(securityNbr,userName,password,firstName,lastName,email,address,phoneNbr,birthday,role) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "" + "INSERT INTO volunteers(securityNbr,userName,password,firstName,lastName,email,address,phoneNbr,birthday,role,skill) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
 
         try (Connection conn = this.dbConnect();
@@ -44,6 +44,7 @@ public class DatabaseConnection {
             pstmt.setString(8, volunteer.getPhoneNbr());
             pstmt.setString(9, volunteer.getBirthday());
             pstmt.setString(10, volunteer.getRole());
+            pstmt.setString(11,volunteer.getSkill());
             pstmt.executeUpdate();
             System.out.println("Volunteer saved into database!");
         } catch (SQLException e) {
@@ -165,7 +166,8 @@ public class DatabaseConnection {
 
     public ObservableList<Event> eventInformation() {
         ObservableList<Event> eventList = FXCollections.observableArrayList();
-        String query = "select * from events ";
+        LocalDate date = LocalDate.now();
+        String query = "select * from events where eventDate >= '"+date+"'";
         try (Connection connection = this.dbConnect();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
@@ -510,7 +512,7 @@ public class DatabaseConnection {
     public ObservableList<Volunteer> volunteerInfo() {
         String roles = "volunteer";
         ObservableList<Volunteer> eventList = FXCollections.observableArrayList();
-        String query = "select firstName,lastName,securityNbr,userName,role,email,birthday,address,phoneNbr from volunteers where role = '"+roles+"'";
+        String query = "select firstName,lastName,securityNbr,userName,role,email,birthday,address,phoneNbr,skill from volunteers where role = '"+roles+"'";
         try (Connection connection = this.dbConnect();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
@@ -525,6 +527,7 @@ public class DatabaseConnection {
                 volunteer.setBirthday(Date.valueOf(resultSet.getString(7)));
                 volunteer.setAddress(resultSet.getString(8));
                 volunteer.setPhoneNbr(resultSet.getString(9));
+                volunteer.setSkill(resultSet.getString(10));
                 eventList.add(volunteer);
 
             }
@@ -577,13 +580,14 @@ public class DatabaseConnection {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 User_Has_Events userHasEvents = new User_Has_Events();
-                userHasEvents.setEventID(resultSet.getInt(1));
-                userHasEvents.setIdinformation(resultSet.getString(2));
-                userHasEvents.setHistory(resultSet.getDate(3));
-                userHasEvents.setEventTime(resultSet.getString(4));
-                userHasEvents.setEventName(resultSet.getString(5));
-                userHasEvents.setCountry(resultSet.getString(6));
-                userHasEvents.setCity(resultSet.getString(7));
+                userHasEvents.setID(resultSet.getInt(1));
+                userHasEvents.setEventID(resultSet.getInt(2));
+                userHasEvents.setIdinformation(resultSet.getString(3));
+                userHasEvents.setHistory(resultSet.getDate(4));
+                userHasEvents.setEventTime(resultSet.getString(5));
+                userHasEvents.setEventName(resultSet.getString(6));
+                userHasEvents.setCountry(resultSet.getString(7));
+                userHasEvents.setCity(resultSet.getString(8));
                 historyList.add(userHasEvents);
 
 
@@ -608,6 +612,58 @@ public class DatabaseConnection {
             }
         }
         return SSN;
+    }
+    public String getEventTime(int eventid) throws SQLException {
+        String time = null;
+
+        String query = "select eventTime from events where eventID = '" +eventid+"'";
+        try (Connection connection = this.dbConnect();
+             Statement statement = connection.createStatement()){
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                time = resultSet.getString(1);
+            }
+        }
+        return time ;
+    }
+    public String getEventName(int eventid) throws SQLException {
+        String name = null;
+
+        String query = "select eventName from events where eventID = '" +eventid+"'";
+        try (Connection connection = this.dbConnect();
+             Statement statement = connection.createStatement()){
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                name = resultSet.getString(1);
+            }
+        }
+        return name ;
+    }
+    public String getEventCountry(int eventid) throws SQLException {
+        String country = null;
+
+        String query = "select country from events where eventID = '" +eventid+"'";
+        try (Connection connection = this.dbConnect();
+             Statement statement = connection.createStatement()){
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                country = resultSet.getString(1);
+            }
+        }
+        return country ;
+    }
+    public String getEventCity(int eventid) throws SQLException {
+        String city = null;
+
+        String query = "select city from events where eventID = '" +eventid+"'";
+        try (Connection connection = this.dbConnect();
+             Statement statement = connection.createStatement()){
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                city = resultSet.getString(1);
+            }
+        }
+        return city ;
     }
 }
 

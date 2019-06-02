@@ -123,7 +123,8 @@
                   </TextField>
                   <Label fx:id="displayRow" layoutX="153.0" layoutY="382.0" prefHeight="17.0" prefWidth="548.0" />
                   <ComboBox fx:id="comboBox" layoutX="1058.0" layoutY="16.0" opacity="0.7" prefHeight="25.0" prefWidth="188.0" promptText="Order List By" />
-                  <Button fx:id="helpButton" alignment="CENTER" layoutX="954.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleHelpButton" prefHeight="33.0" prefWidth="31.0" text="?" />
+                  <Button fx:id="helpButton" layoutX="1196.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleHelpButton" prefHeight="30.0" prefWidth="30.0" text="?" />
+                  <Button fx:id="refresh" layoutX="401.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleRefresh" text="↺" />
                </children>
                <stylesheets>
                   <URL value="@design.css" />
@@ -141,6 +142,7 @@
                         <TableColumn fx:id="volunteer_lastname" prefWidth="291.0" text="Volunteer_LastName" />
                      </columns>
                   </TableView>
+                  <TextField fx:id="searchVolunteer" layoutX="374.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" text="Seacrh" />
                </children>
                <stylesheets>
                   <URL value="@design.css" />

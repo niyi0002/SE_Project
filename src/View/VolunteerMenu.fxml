@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VolunteerMenu">
+<AnchorPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VolunteerMenu">
     <children>
         <Label fx:id="displayMessagae" layoutX="490.0" layoutY="119.0" prefHeight="40.0" prefWidth="371.0" text="         User Menu" textFill="#2f0228">
             <font>
                 <Font name="Times New Roman Italic" size="36.0" />
             </font>
         </Label>
-        <Button fx:id="signout" layoutX="490.0" layoutY="428.0" mnemonicParsing="false" onAction="#handlegoBack" text="Sign out">
+        <Button fx:id="signout" layoutX="490.0" layoutY="460.0" mnemonicParsing="false" onAction="#handlegoBack" text="Sign out">
             <font>
                 <Font name="Times New Roman Bold Italic" size="14.0" />
             </font>
         </Button>
-        <Button fx:id="event" layoutX="490.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleEvent" prefHeight="31.0" prefWidth="80.0" text="Events">
+        <Button fx:id="event" layoutX="490.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleEvent" prefHeight="31.0" prefWidth="80.0" text="Events">
             <font>
                 <Font name="Times New Roman Italic" size="16.0" />
             </font>
@@ -28,16 +28,17 @@
                 <Font name="Times New Roman Italic" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="schedule" layoutX="490.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleSchedule" text="Schedule">
+        <Button fx:id="schedule" layoutX="490.0" layoutY="367.0" mnemonicParsing="false" onAction="#handleSchedule" text="Schedule">
             <font>
                 <Font name="Times New Roman Italic" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="donate" layoutX="490.0" layoutY="384.0" mnemonicParsing="false" onAction="#handleDonate" prefHeight="31.0" prefWidth="80.0" text="Donate">
+        <Button fx:id="donate" layoutX="490.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleDonate" prefHeight="31.0" prefWidth="80.0" text="Donate">
             <font>
                 <Font name="Times New Roman Italic" size="16.0" />
             </font>
         </Button>
+      <Button fx:id="history" layoutX="490.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleViewHistory" text="History" />
     </children>
     <stylesheets>
         <URL value="@design.css" />

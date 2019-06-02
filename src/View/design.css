@@ -21,6 +21,27 @@
     -fx-pref-height: 30;
     -fx-pref-width: 320;
 }
+#refresh{
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 20;
+    -fx-background-insets: 0,1,1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+    -fx-font-weight: normal;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 18px;
+    -fx-padding: 5 20 5 20;
+    -fx-border-color: lightgray ;
+    -fx-border-width:1;
+    -fx-border-radius: 20;
+    -fx-alignment: center ;
+    -fx-opacity: 0.9 ;
+    -fx-pref-height: 30;
+    -fx-pref-width: 30;
+}
 
 #pane{
     -fx-background-color:  linear-gradient(violet, bisque);
@@ -149,4 +170,25 @@
     -fx-opacity: 0.9 ;
     -fx-pref-height: 70;
     -fx-pref-width: 120;
+}
+#helpButton{
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 20;
+    -fx-background-insets: 0,1,1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+    -fx-font-weight: normal;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 18px;
+    -fx-padding: 5 20 5 20;
+    -fx-border-color: lightgray ;
+    -fx-border-width:1;
+    -fx-border-radius: 20;
+    -fx-alignment: center ;
+    -fx-opacity: 0.9 ;
+    -fx-pref-height: 30;
+    -fx-pref-width: 30;
 }

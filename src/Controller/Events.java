@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Events implements Initializable {
@@ -150,6 +151,11 @@ public class Events implements Initializable {
         volunteer.setIdinformation(personID);
         event1.setEventID(eventid);
         event1.setEventDate(java.sql.Date.valueOf(db.getEventDate(eventid)));
+        event1.setEventTime(db.getEventTime(eventid));
+        event1.setEventName(db.getEventName(eventid));
+        event1.setCountry(db.getEventCountry(eventid));
+        event1.setCity(db.getEventCity(eventid));
+
         db.registerToAnEvent(personID,eventid,event1,volunteer);
 
     }
@@ -159,6 +165,25 @@ public class Events implements Initializable {
         cs.sceneHandler("../View/VolunteerMenu.fxml",event);
 
     }
+    public void popUpBox(Volunteer volunteer){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Volunteer Information");
+        alert.setHeaderText(String.valueOf(volunteer));
+        alert.setContentText("Choose your option.");
 
+        ButtonType buttonTypeOne = new ButtonType("Delete");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeOne , buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne){
+            // ... user chose "One"
+            db.deleteVolunteer(volunteer.getUsername());
+            table.refresh();
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
+    }
 
 }

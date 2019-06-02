@@ -36,8 +36,6 @@ public class Profile implements Initializable {
     @FXML
     private Button editProfile;
 
-    @FXML
-    private Button history;
 
     @FXML
     private Label nameLabel;
@@ -126,9 +124,5 @@ public class Profile implements Initializable {
         cs.sceneHandler("../View/VolunteerMenu.fxml",event);
     }
 
-    @FXML
-    void handleViewHistory(ActionEvent event) throws IOException {
 
-        cs.sceneHandler("../View/ViewHistory.fxml",event);
-    }
 }

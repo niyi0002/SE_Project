@@ -136,6 +136,8 @@ public class AdminMenu implements Initializable {
 
     @FXML
     private Button helpButton;
+    @FXML
+    private Button refresh;
 
 
     @FXML
@@ -146,6 +148,9 @@ public class AdminMenu implements Initializable {
 
     @FXML
     private TableColumn<Volunteer, String> volunteer_lastname;
+
+    @FXML
+    private TextField searchVolunteer;
 
 
     private    DatabaseConnection db = new DatabaseConnection();
@@ -173,18 +178,9 @@ public class AdminMenu implements Initializable {
 
     }
 
-    @FXML
-    void handleGoBack(ActionEvent event) {
-
-    }
 
     @FXML
     void handleHelpButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    void returnAction(ActionEvent event) {
 
     }
 
@@ -246,12 +242,6 @@ public class AdminMenu implements Initializable {
         Tooltip tooltip = new Tooltip();
         tooltip.setText("To edit events, click on the field you wish to change.");
         helpButton.setTooltip(tooltip);
-
-
-
-
-
-
 
         comboBox.getItems().add("Ascending order");
         comboBox.getItems().add("Descending order");
@@ -327,6 +317,7 @@ public class AdminMenu implements Initializable {
 
             }
         });
+
 
     }
 
@@ -405,5 +396,69 @@ public class AdminMenu implements Initializable {
     @FXML
     private void handleSignOut(ActionEvent event) throws IOException {
         cs.sceneHandler("../View/DefaultPage.fxml",event);
+    }
+    @FXML
+    private void handleRefresh(ActionEvent event){
+        ObservableList<Event> eventObservableList1 = db.eventInformation();
+        comboBox.getItems().add("Ascending order");
+        comboBox.getItems().add("Descending order");
+        eventId.setVisible(false);
+
+        this.eventId.setCellValueFactory(new PropertyValueFactory("eventID"));
+        this.eventName1.setCellValueFactory(new PropertyValueFactory("eventName"));
+        this.date.setCellValueFactory(new PropertyValueFactory("eventDate"));
+        this.time.setCellValueFactory(new PropertyValueFactory("eventTime"));
+        this.info.setCellValueFactory(new PropertyValueFactory("eventInfo"));
+        this.organizer1.setCellValueFactory(new PropertyValueFactory("eventOrganizer"));
+        this.country1.setCellValueFactory(new PropertyValueFactory("country"));
+        this.city1.setCellValueFactory(new PropertyValueFactory("city"));
+        editEvent();
+
+        this.table.setItems(eventObservableList1);
+        this.table.setEditable(true);
+        FilteredList<Event> filteredData = new FilteredList<>(eventObservableList1, p -> true);
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(event1 -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (event1.getEventName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else if (event1.getCountry().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches last name.
+                }
+                return false; // Does not match.
+            });
+        });
+        SortedList<Event> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        table.setItems(sortedData);
+
+        comboBox.setOnAction((e) -> {
+            String choice = comboBox.getSelectionModel().getSelectedItem();
+            if (choice == "Ascending order") {
+                eventName1.setSortType(TableColumn.SortType.ASCENDING);
+                eventId.setSortType(TableColumn.SortType.ASCENDING);
+
+                table.setItems(sortedData);
+                table.getSortOrder().add(eventName1);
+
+            } else if (choice == "Descending order") {
+                eventName1.setSortType(TableColumn.SortType.DESCENDING);
+                eventId.setSortType(TableColumn.SortType.DESCENDING);
+
+                table.setItems(sortedData);
+                table.getSortOrder().add(eventName1);
+            }
+        });
+
     }
 }

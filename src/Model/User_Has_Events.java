@@ -8,6 +8,7 @@ import javafx.beans.property.StringProperty;
 import java.sql.Date;
 
 public class User_Has_Events {
+    private IntegerProperty ID = new SimpleIntegerProperty(this, "ID");
     private IntegerProperty eventID = new SimpleIntegerProperty(this, "eventID");
     private StringProperty idinformation = new SimpleStringProperty(this, "userID");
     private StringProperty history = new SimpleStringProperty(this, "history");
@@ -33,6 +34,10 @@ public class User_Has_Events {
 
     }
     public User_Has_Events(){}
+
+    public int getID() {
+        return ID.get();
+    }
 
     public void setEventID(int eventID) {
         this.eventID.set(eventID);
@@ -119,6 +124,13 @@ public class User_Has_Events {
 
     public StringProperty eventTimeProperty() {
         return eventTime;
+    }
+
+    public IntegerProperty IDProperty() {
+        return ID;
+    }
+
+    public void setID(int anInt) {
     }
 }
 

@@ -76,7 +76,7 @@ public class ViewHistory implements Initializable {
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
 
-        cs.sceneHandler("../View/Profile.fxml",event);
+        cs.sceneHandler("../View/VolunteerMenu.fxml",event);
 
     }
 }
