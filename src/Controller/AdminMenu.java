@@ -175,6 +175,7 @@ public class AdminMenu implements Initializable {
         event1.setCountry(country.getText());
         event1.setCity(city.getText());
         db.addEvent(event1);
+        addEvent();
 
     }
 
@@ -232,6 +233,7 @@ public class AdminMenu implements Initializable {
             me.printStackTrace();
         }
         System.out.println("email sent");
+        sentEmail();
 
     }
 
@@ -461,4 +463,19 @@ public class AdminMenu implements Initializable {
         });
 
     }
+    private void addEvent() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Add Event Successful");
+        alert.setContentText("You added a new event to the system!");
+
+        alert.showAndWait();
+    }
+    private void sentEmail() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Email Sent");
+        alert.setContentText("Email successfully sent!");
+
+        alert.showAndWait();
+    }
+
 }

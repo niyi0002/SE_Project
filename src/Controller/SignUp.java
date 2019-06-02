@@ -81,7 +81,7 @@ public class SignUp {
         volunteer.setBirthday(gettedDatePickerDate);
         volunteer.setRole("volunteer");
         db.signUpVolunteer(volunteer);
-
+        alertBox();
     }
     @FXML
     private void handleCancel(ActionEvent event){
@@ -96,6 +96,13 @@ public class SignUp {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private void alertBox() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sign Up Successful");
+        alert.setContentText("You successfully signed up!");
+
+        alert.showAndWait();
     }
 
 

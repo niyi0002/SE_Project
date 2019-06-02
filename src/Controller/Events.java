@@ -157,6 +157,7 @@ public class Events implements Initializable {
         event1.setCity(db.getEventCity(eventid));
 
         db.registerToAnEvent(personID,eventid,event1,volunteer);
+        alertBox();
 
     }
     @FXML
@@ -165,25 +166,15 @@ public class Events implements Initializable {
         cs.sceneHandler("../View/VolunteerMenu.fxml",event);
 
     }
-    public void popUpBox(Volunteer volunteer){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Volunteer Information");
-        alert.setHeaderText(String.valueOf(volunteer));
-        alert.setContentText("Choose your option.");
 
-        ButtonType buttonTypeOne = new ButtonType("Delete");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        alert.getButtonTypes().setAll(buttonTypeOne , buttonTypeCancel);
+    private void alertBox() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registration Successful");
+        alert.setContentText("You successfully registered to an event!");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeOne){
-            // ... user chose "One"
-            db.deleteVolunteer(volunteer.getUsername());
-            table.refresh();
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }
+        alert.showAndWait();
     }
+
 
 }

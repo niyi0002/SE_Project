@@ -6,6 +6,7 @@ import Model.Donation;
 import Model.Volunteer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -50,7 +51,7 @@ public class Donate {
         donation.setDonation(amount.getText());
         donation.setDonationDate(Date.valueOf(date));
         db.insertDonation( donation, volunteer);
-
+        alertBox();
 
 
     }
@@ -58,6 +59,13 @@ public class Donate {
     @FXML
     void handleGoBack(ActionEvent event) throws IOException {
         cs.sceneHandler("../View/VolunteerMenu.fxml",event);
+    }
+    private void alertBox() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Donation Successful");
+        alert.setContentText("Thank you for your participation");
+
+        alert.showAndWait();
     }
 
 }
