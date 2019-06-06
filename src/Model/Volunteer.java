@@ -11,11 +11,13 @@ public class Volunteer extends User {
 
     private StringProperty birthday = new SimpleStringProperty(this, "birthday");
     private StringProperty skill = new SimpleStringProperty(this,"skill");
+    private StringProperty balance = new SimpleStringProperty(this, "balance");
 
-    public Volunteer( StringProperty birthday,StringProperty skill){
+    public Volunteer( StringProperty birthday,StringProperty skill,StringProperty balance){
 
         this.birthday = birthday ;
         this.skill = skill;
+        this.balance= balance;
     }
     public Volunteer(IntegerProperty idinformation, StringProperty firstname, StringProperty lastname, StringProperty email, StringProperty password, StringProperty username , StringProperty birthday , StringProperty role) {
 
@@ -41,9 +43,20 @@ public class Volunteer extends User {
         return skill;
     }
 
+    public String getBalance() {
+        return balance.get();
+    }
+
+    public StringProperty balanceProperty() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance.set(balance);
+    }
     @Override
     public String toString() {
         return  " ID : "+getIdinformation()+ "\n Firstname : " +getFirstname()+ "\n Lastname : "+getLastname()+ "\n Username : " +getUsername()+ "\n Email : " +getEmail()+ "\n Birthday : " +getBirthday()+
-                "\n Address : " +getAddress()+ "\n Phone Number : " +getPhoneNbr()+ "\n Skills : " +getSkill();
+                "\n Address : " +getAddress()+ "\n Phone Number : " +getPhoneNbr()+ "\n Skills : " +getSkill()+ "\n Balance: " + getBalance();
     }
 }

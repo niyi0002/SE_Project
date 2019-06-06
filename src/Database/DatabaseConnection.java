@@ -66,6 +66,25 @@ public class DatabaseConnection {
         return id;
     }
 
+    public void updateBalance(String user, Volunteer volunteer) {
+
+        String sql = "update volunteers set balance = ?  where userName = ?  ";
+
+
+        try (Connection con = this.dbConnect();
+             PreparedStatement preparedStmt = con.prepareStatement(sql)) {
+
+            preparedStmt.setString(1, volunteer.getBalance());
+            preparedStmt.setString(2, user);
+
+            preparedStmt.executeUpdate();
+            System.out.println("Balance has been updated!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        // execute the java preparedstatement
+    }
+
     public String getFirstName(String username) throws SQLException {
         String firstName = null;
 
